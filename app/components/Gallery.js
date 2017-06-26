@@ -9,16 +9,6 @@ class Gallery extends Component {
                 {
                     this.props.items.map((item, index) => {
                         let { title, imageLinks, infoLink } = item.volumeInfo;
-                        //let imageLinks.thumbnail =  imageLinks !== 'undefined' ? imageLinks.thumbnail : alternateImage;
-                        console.log(imageLinks);
-                        if(imageLinks === 'undefined') {
-                            console.log('Undefined it is');
-                            let imageLinks= {
-                                thumbnail: alternateImage
-                            }
-                            console.log(imageLinks);
-
-                        }
                         return (
 
                             <a
