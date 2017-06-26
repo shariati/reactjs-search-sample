@@ -2,20 +2,30 @@ import React, { Component } from 'react'
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap'
 
 class Gallery extends Component {
-    render() {
+    renderSearchResult() {
         const alternateImage = '/build/assets/no-image-ebook.png';
         return (
             <div>
                 {
                     this.props.items.map((item, index) => {
                         let { title, imageLinks, infoLink } = item.volumeInfo;
+                        //let imageLinks.thumbnail =  imageLinks !== 'undefined' ? imageLinks.thumbnail : alternateImage;
+                        console.log(imageLinks);
+                        if(imageLinks === 'undefined') {
+                            console.log('Undefined it is');
+                            let imageLinks= {
+                                thumbnail: alternateImage
+                            }
+                            console.log(imageLinks);
+
+                        }
                         return (
 
-                            <a 
-                            key={index} 
-                            className='book'
-                            href={infoLink}
-                            target='_blank'
+                            <a
+                                key={index}
+                                className='book'
+                                href={infoLink}
+                                target='_blank'
                             >
                                 <img
                                     src={
@@ -33,6 +43,18 @@ class Gallery extends Component {
                 }
             </div>
         )
+    }
+    noSearchResults() {
+        return(
+            <div> No Books found </div>
+        )
+    }
+    render() {
+        if(this.props.items.length) {
+           return this.renderSearchResult();
+        } else {
+           return this.noSearchResults();
+        }
     }
 }
 

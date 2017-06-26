@@ -20,6 +20,7 @@ class Global extends Component {
         ).then(response => response.json())
         .then(json => {
             let {items} = json;
+            console.log(items);
             this.setState({
                 items
             })
